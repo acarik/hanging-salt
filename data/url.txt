@@ -1,0 +1,1 @@
+https://raw.githubusercontent.com/beguyumaz/turkish-visual-word-rec-tools/master/src/Wuggy/data/turkish_lexicon.txt
