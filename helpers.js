@@ -1,5 +1,7 @@
-function fixQueryText(text) {
-    if (queryTestCheck(text)) {
+params = require('./params.json')
+
+function fixQueryTextTelegram(text) {
+    if (queryTestCheckTelegram(text)) {
         const spl1 = text.split('"');
         const letters = spl1[1];
         const wrongLetters = spl1[2].split(" ").join(""); // remove whitespace
@@ -16,7 +18,36 @@ function fixQueryText(text) {
     }
 }
 
-function queryTestCheck(inp) {
+function fixQueryTextWeb(text) {
+    if (queryTestCheckWeb(text)) {
+        return {
+            "error": false,
+            "letters": text.letters,
+            "wrong-letters": text.wrongLetters
+        }
+    } else {
+        return {
+            "error": true,
+            "message": "unrecognized query"
+        }
+    }
+
+}
+
+function queryTestCheckWeb(text) {
+    // TODO
+    return true;
+}
+
+function getPortNumber() {
+    if (process.env.PORT == undefined) {
+        return params.portnumber;
+    } else {
+        return process.env.PORT;
+    }
+}
+
+function queryTestCheckTelegram(inp) {
     //todo
     return true
 }
@@ -61,5 +92,7 @@ function log(str) {
 module.exports = {
     fixLine: fixLine,
     log: log,
-    fixQueryText: fixQueryText
+    fixQueryTextTelegram: fixQueryTextTelegram,
+    getPortNumber: getPortNumber,
+    fixQueryTextWeb: fixQueryTextWeb
 }

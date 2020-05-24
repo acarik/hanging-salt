@@ -5,6 +5,8 @@ const bot = new TelegramBot(params["telegram-bot-token"], { polling: true });
 const db = require('./db.js')
 const helpers = require('./helpers.js')
 
+db.update();
+
 bot.on('message', (msg) => {
     // /login admin pass
     const text = msg.text.split(' ')
@@ -34,7 +36,7 @@ bot.on('message', (msg) => {
             break;
         case /\/query/.test(msg.text):
             if (db.checkCredentials(["poweruser"], id)) {
-                bot.sendMessage(msg.chat.id, db.query(helpers.fixQueryText(msg.text)));
+                bot.sendMessage(msg.chat.id, db.query(helpers.fixQueryTextTelegram(msg.text)));
                 // örnek bir query:
                 // /query ".cem" zş
                 // cevap acem

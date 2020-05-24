@@ -2,5 +2,6 @@
     "lexicon-file-path": "data/turkish_lexicon.txt",
     "telegram-bot-token": "1128775183:AAFDEitkQpr-Dk57IdGA7fE_rSGM6QfNvo4",
     "admin-pass": "123456",
-    "poweruser-pass" : "123456"
+    "poweruser-pass": "123456",
+    "portnumber": 3000
 }
