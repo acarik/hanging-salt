@@ -2,12 +2,14 @@ const params = require('./params.json')
 const lineReader = require('line-reader');
 const wordArray = [];
 const adminArray = [];
-adminArray.push("16401208")
+adminArray.push(params.adminid)
 const poweruserArray = [];
-poweruserArray.push("16401208")
+poweruserArray.push(params.adminid)
 const helpers = require('./helpers')
+const admin = require('./admin.js')
 
 function query(qword) {
+    admin.sendMessage('querying letters: ' + qword.letters + ', wrong letters: ' + qword["wrong-letters"])
     if (qword.error) {
         return "unrecognized"
     } else {
@@ -37,10 +39,10 @@ function query(qword) {
                 queryReturn += "\n";
             }
         }
-        if (queryReturn.length == 0)
-        {
+        if (queryReturn.length == 0) {
             queryReturn = "no matching words found."
         }
+        admin.sendMessage("queryreturn: " + queryReturn)
         return queryReturn;
     }
 }
@@ -62,6 +64,9 @@ function update() {
         } else {
             wordArray.push(currWord)
             helpers.log(currWord + ' added.')
+        }
+        if (last) {
+            admin.sendMessage('update done')
         }
     })
 }

@@ -3,5 +3,6 @@
     "telegram-bot-token": "1128775183:AAFDEitkQpr-Dk57IdGA7fE_rSGM6QfNvo4",
     "admin-pass": "123456",
     "poweruser-pass": "123456",
-    "portnumber": 3000
+    "portnumber": 3000,
+    "adminid": "16401208"
 }
