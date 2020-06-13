@@ -3,11 +3,12 @@ params = require('./params.json')
 function fixQueryTextTelegram(text) {
     if (queryTestCheckTelegram(text)) {
         const spl1 = text.split('"');
-        const letters = spl1[1];
+        const word = spl1[1];
         const wrongLetters = spl1[2].split(" ").join(""); // remove whitespace
         return {
             "error": false,
-            "letters": letters,
+            "word": word,
+            "letters": word.split('.').join(''),
             "wrong-letters": wrongLetters
         }
     } else {
@@ -22,7 +23,8 @@ function fixQueryTextWeb(text) {
     if (queryTestCheckWeb(text)) {
         return {
             "error": false,
-            "letters": text.letters,
+            "word": text.word,
+            "letters": text.word.split('.').join('.'),
             "wrong-letters": text.wrongLetters
         }
     } else {

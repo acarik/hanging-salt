@@ -9,23 +9,23 @@ const helpers = require('./helpers')
 const admin = require('./admin.js')
 
 function query(qword) {
-    admin.sendMessage('querying letters: ' + qword.letters + ', wrong letters: ' + qword["wrong-letters"])
+    admin.sendMessage('querying word: \n' + qword.word + ', wrong letters: ' + qword["wrong-letters"])
     if (qword.error) {
         return "unrecognized"
     } else {
         let queryReturn = "";
         let regexQ = "^";
         let neg = "";
-        if (qword["wrong-letters"].length == 0) {
+        if ((qword["wrong-letters"].length == 0) && (qword["letters"].length == 0)) {
             neg = ".";
         } else {
-            neg = "[^" + (qword["wrong-letters"]) + "]";
+            neg = "[^" + (qword["wrong-letters"]) + qword["letters"] + "]";
         }
-        for (let i = 0; i < qword.letters.length; i++) {
-            if (qword.letters[i] == '.') {
+        for (let i = 0; i < qword.word.length; i++) {
+            if (qword.word[i] == '.') {
                 regexQ += neg;
             } else {
-                regexQ += qword.letters[i];
+                regexQ += qword.word[i];
             }
         }
         regexQ += "$";
@@ -42,7 +42,7 @@ function query(qword) {
         if (queryReturn.length == 0) {
             queryReturn = "no matching words found."
         }
-        admin.sendMessage("queryreturn: " + queryReturn)
+        admin.sendMessage("queryreturn: \n" + queryReturn)
         return queryReturn;
     }
 }

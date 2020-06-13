@@ -20,15 +20,15 @@ app.listen(helpers.getPortNumber(), function () {
 
 
 app.post('/', function (req, res) {
-    let letters = req.body.letters;
+    let word = req.body.word;
     let wrongLetters = req.body.wrongLetters;
-    helpers.log(letters)
-    helpers.log(wrongLetters)
+    helpers.log("word: " + word)
+    helpers.log("wrong letters: " + wrongLetters)
 
-    let queryResult = db.query(helpers.fixQueryTextWeb({ "letters": letters, "wrongLetters": wrongLetters }))
+    let queryResult = db.query(helpers.fixQueryTextWeb({ "word": word, "wrongLetters": wrongLetters }))
     res.render('index', {
         yanit: queryResult,
-        letters: letters,
+        word: word,
         wrongLetters: wrongLetters,
         error: null
     })
