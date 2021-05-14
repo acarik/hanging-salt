@@ -57,6 +57,7 @@ function queryWholeWord(word) {
 }
 
 function update() {
+    admin.sendMessage('updating')
     lineReader.eachLine(params['lexicon-file-path'], function (line, last) {
         let currWord = helpers.fixLine(line);
         if (queryWholeWord(currWord)) {
